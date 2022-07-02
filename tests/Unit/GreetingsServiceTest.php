@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class GreetingsServiceTest extends TestCase
 {
-    public function test_service_greets_proper_person()
+    public function test_service_greets_proper_person(): void
     {
         $greetings = GreetingsService::sayHelloToMyLittleFriend('PHP Chapter crew');
 
