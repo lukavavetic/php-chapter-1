@@ -10,4 +10,9 @@ final class GreetingsService
     {
         return sprintf('Hello %s. I hope you will survive this boring presentation.', $to);
     }
+
+    public static function sayGoodbye(): string
+    {
+        return 'Adios amigos.';
+    }
 }
