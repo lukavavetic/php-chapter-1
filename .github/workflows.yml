@@ -1,0 +1,28 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag php-chapter-1
+    
+    - name: Run the container
+    - run: docker container run --name php-chapter-app -d php-chapter-1
+    
+    - name: Run PHP Lint
+    - run: docker exec -it php-chapter-app vendor/bin/phplint
+    
+    - name: Run PHP tests
+    - run: docker exec -it php-chapter-app vendor/bin/phpunit
+    
+    - name: Run PHP Stan
+    - run: docker exec -it php-chapter-app vendor/bin/phpstan analyse
