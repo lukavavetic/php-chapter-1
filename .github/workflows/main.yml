@@ -1,0 +1,29 @@
+name: PHP Chapter workflow
+
+on:
+  push:
+    branches: [ "main" ]
+jobs:
+    container:
+      runs-on: ubuntu-latest
+      container: lukavavetic/php-chapter-1
+      steps:
+      - name: Obtain Latest Git ONLY within container for checkout
+        run: |
+          apt-get update
+          apt-get install -y git
+
+      - name: Checkout Repo Action
+        uses: actions/checkout@v2
+        
+      - name: Run Composer update
+        run: composer update
+
+      - name: Run PHP Lint
+        run: vendor/bin/phplint
+
+      - name: Run PHP tests
+        run: vendor/bin/phpunit
+
+      - name: Run PHP Stan
+        run: vendor/bin/phpstan analyse
