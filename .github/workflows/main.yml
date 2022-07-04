@@ -34,15 +34,15 @@ jobs:
       steps:
         - uses: actions/checkout@v2
         
-        - name: Docker Login
+        - name: Docker Login 
           env:
             DOCKER_USER: ${{ secrets.DOCKER_USER }}
             DOCKER_SECRET: ${{ secrets.DOCKER_SECRET }}
           run: docker login -u $DOCKER_USER -p $DOCKER_SECRET
           
-        - name: Docker Image Build
+        - name: Docker Image build
           run: docker image build -t lukavavetic/php-chapter-1 .
           
-        - name: Docker Image Push
+        - name: Docker Image push
           run: docker image push lukavavetic/php-chapter-1
         
